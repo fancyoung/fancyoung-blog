@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>将Arch Linux从32位升到64位 | 没有标题的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="翻译自Arch Wiki：Migrating Between Architectures Without Reinstalling
+i686为32位，x86_64位64位
+升级有风险，操作须谨慎。本人使用文中方法2升级时无意间重启了电脑，催悲了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="将Arch Linux从32位升到64位">
+<meta property="og:url" content="http://fancyoung.com/blog/migrating-between-architectures-without-reinstalling/index.html">
+<meta property="og:site_name" content="没有标题的博客">
+<meta property="og:description" content="翻译自Arch Wiki：Migrating Between Architectures Without Reinstalling
+i686为32位，x86_64位64位
+升级有风险，操作须谨慎。本人使用文中方法2升级时无意间重启了电脑，催悲了。">
+<meta property="og:updated_time" content="2016-12-31T03:53:55.831Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="将Arch Linux从32位升到64位">
+<meta name="twitter:description" content="翻译自Arch Wiki：Migrating Between Architectures Without Reinstalling
+i686为32位，x86_64位64位
+升级有风险，操作须谨慎。本人使用文中方法2升级时无意间重启了电脑，催悲了。">
+  
+    <link rel="alternate" href="/atom.xml" title="没有标题的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">没有标题的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">记录与分享</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://fancyoung.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-migrating-between-architectures-without-reinstalling" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/migrating-between-architectures-without-reinstalling/" class="article-date">
+  <time datetime="2011-11-07T06:37:00.000Z" itemprop="datePublished">2011-11-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Arch-Linux/">Arch Linux</a>►<a class="article-category-link" href="/categories/Arch-Linux/翻译/">翻译</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      将Arch Linux从32位升到64位
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>翻译自Arch Wiki：<a href="https://wiki.archlinux.org/index.php/Migrating_Between_Architectures_Without_Reinstalling" target="_blank" rel="external">Migrating Between Architectures Without Reinstalling</a></li>
+<li>i686为32位，x86_64位64位</li>
+<li>升级有风险，操作须谨慎。本人使用文中方法2升级时无意间重启了电脑，催悲了。</li>
+</ul>
+<a id="more"></a>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="确认为64位平台"><a href="#确认为64位平台" class="headerlink" title="确认为64位平台"></a>确认为64位平台</h3><p>如果你已经正在使用x86_64但是想安装i686，可以跳过此步。<br>为了运行64位软件，你的CPU必须支持64位。现在大部分CPU都支持64位。你可以通过运行一下命令来确认：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ grep --color &apos;lm&apos; /proc/cpuinfo</div></pre></td></tr></table></figure></p>
+<p>（原文中为<figure class="highlight plain"><figcaption><span>--color '\'</span><a href="/proc/cpuinfo```，">应该不对）</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">当CPU为x86_64平台时，输出结果里会出现高亮的 ```lm``` （“long mode”）。</div><div class="line">注意不是```lahf_lm```，它和64位无关。</div><div class="line"></div><div class="line">### 硬盘空间</div><div class="line">在迁移过程中，```/var/cache/pacman/pkg```的大小将翻倍，请为此做好准备。这是假定cache里只有当前安装的包，就像```$ pacman -Sc```（clean）刚运行过一样。使用空间增长是因为所有包同时有i686和x86_64两个版本。</div><div class="line">如果你没有足够的空间，可以使用[gparted](https://wiki.archlinux.org/index.php/Gparted)来调整相关分区大小，或者mount另一个分区到```/var/cache/pacman```。</div><div class="line">在迁移过程中请不要移除老框架的软件包，知道完全升级成功。过早的移除会使你无法回退和还原变更。</div><div class="line"></div><div class="line">### 电源支持</div><div class="line">升级时间比较长，并且不可中断。根据你的 安装包大小及网络速度，你最好为此准备至少一个小时的升级时间（虽然你可以先把它们下载下来）。请保证你的电源稳定。</div><div class="line"></div><div class="line">### 回退准备</div><div class="line">如果迁移过程中失败，有些包可以帮助你解决此时的问题，但是需要你在迁移之前安装。详情可以参考后面的 #Troubleshooting 。</div><div class="line">包[busybox](https://www.archlinux.org/packages/?name=busybox)可以用来还原变更。它不依赖于其他包，可以单独安装。通过下面命令可以安装32位（i686）的版本</div></pre></td></tr></table></figure></p>
+<p>$ pacman -S busybox<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">另一个包是[lib32-glibc](https://www.archlinux.org/packages/?name=lib32-glibc)，在[Multilib](https://wiki.archlinux.org/index.php/Multilib_Project)的x86_64资源库里。这个只有当你从32位迁移至其它版本时才可能使用（It is probably only useful when migrating away from 32 bits）;无论如何你可能安全跳过这个包。你可以用这个包来运行32位程序，通过明确的调用```/lib/ld-linux-x86-32.so.2```。可用下面命令行安装。</div></pre></td></tr></table></figure></p>
+<p>$ pacman -S lib32-glibc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 方法1：使用Arch LiveCD</div><div class="line">1. 下载、刻录并启动64位Arch ISO LiveCD。</div><div class="line">2. 配置LiveCD的网络，然后pacman用新的库。</div><div class="line">3. 将现在的安装挂在到```/mnt```目录。如：```mount /dev/sda1 /mnt</div></pre></td></tr></table></figure></p>
+<ol>
+<li>使用下面的脚本来执行：升级本地pacman数据库、取得本地安装包列表并重新安装：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"></div><div class="line">MOUNTED_INSTALL=&apos;/mnt&apos;</div><div class="line">TEMP_FILE=&apos;/tmp/packages.list&apos;</div><div class="line"></div><div class="line">pacman --root $MOUNTED_INSTALL -Sy</div><div class="line">pacman --root $MOUNTED_INSTALL -Qqet &gt; $TEMP_FILE</div><div class="line"></div><div class="line">for PKG in $(cat $TEMP_FILE) ; do</div><div class="line">   pacman --root $MOUNTED_INSTALL -S $PKG --noconfirm</div><div class="line">done</div><div class="line"></div><div class="line">exit 0</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="方法2：从当前系统升级"><a href="#方法2：从当前系统升级" class="headerlink" title="方法2：从当前系统升级"></a>方法2：从当前系统升级</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><h4 id="Cache-old-packages"><a href="#Cache-old-packages" class="headerlink" title="Cache old packages"></a>Cache old packages</h4><blockquote>
+<p>注意：如果你有从AUR或第三方库的包，并且在新的平台里查询不到，pacman会告知找不到相应替代。将这些包记录下来，以便在升级成功后重新安装，并用<figure class="highlight plain"><figcaption><span>pacman -Rsn package_name```来卸载。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">确保你现在的包都在你的cache里，下载它们（老平台的）以便回退。</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>$ pacman -Sw $(comm -23 &lt;(pacman -Qq) &lt;(pacman -Qmq))<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">或者用pacman-contrib包里的bacman来生成它们。</div><div class="line">如果你是从32位迁移，现在可以安装32位的Busybox</div></pre></td></tr></table></figure></p>
+<p>$ pacman -S busybox<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 更换pacman平台</div><div class="line">编辑配置文件```/etc/pacman.conf```并且把```Architecture```从```auto```改为新值。你可以参考下面的sed命令：</div><div class="line">For x86_64</div></pre></td></tr></table></figure></p>
+<p>$ sed -i -e s/‘Architecture = auto’/‘Architecture = x86_64’/g /etc/pacman.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">For i686</div></pre></td></tr></table></figure></p>
+<p>$ sed -i -e s/‘Architecture = auto’/‘Architecture = i686’/g /etc/pacman.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">手动移除Pacman软件仓库的数据库，强制同步新的软件仓库：</div></pre></td></tr></table></figure></p>
+<p>$ rm -rf /var/lib/pacman/sync/*   # remove existing repository cache<br>$ pacman -Sy                      # sync new architecture repositories<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 下载新包</div><div class="line">给所有当前安装包下载新平台版本</div></pre></td></tr></table></figure></p>
+<p>$ pacman -Sw $(pacman -Qq|sed ‘/^lib32-/ d’)  # download new package versions<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">如果有些包不能下载，请删除它们。</div><div class="line">如果是迁移到32位，安装32位的Busybox fallback now that Pacman has been configured with the 32-bit architecture:</div></pre></td></tr></table></figure></p>
+<p>$ pacman -S busybox<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">或者，如果是迁移到64位，安装lib-32-glibc fallback:</div></pre></td></tr></table></figure></p>
+<p>$ pacman -S lib32-glibc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 安装包</div><div class="line">#### 安装内核（64位）</div><div class="line">将内核升级到64位（x86_64）很安全很简单：32位和64位的应用在64位内核下都能很好的运行。如果是从64位迁移至其它平台，leave the 64-bit kernel installed and running for now and skip this step.</div><div class="line">用下面命令安装Arch Linux内核：</div></pre></td></tr></table></figure></p>
+<p>$ pacman -S linux<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">启动新的64位内核，并确认它运行x86_64平台：</div></pre></td></tr></table></figure></p>
+<p>$ uname -m<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 控制台终端</div><div class="line">现在切换到一个text-mode虚拟控制台（可以通过Ctrl+Alt+F1）来完成接下来的步骤。你可以使用SSH之类的伪终端，但不建议你这么做。有些包会被移除或者被替换，可能会导致X11桌面不稳定，以至于系统无法启动。</div><div class="line"></div><div class="line">#### 安装Pacman</div><div class="line">&gt; 警告：一旦你开始升级pacman及相关依赖，便不能中断。Pacman及相关依赖必须在同一条命令行上同时安装。</div></pre></td></tr></table></figure></p>
+<p>$ pacman -S pacman glibc libfetch libarchive openssl acl attr xz-utils bzip2 zlib readline bash ncurses expat<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Immediately following this command only Busybox, Bash and Pacman will be executable until the other packages are migrated below. 安装成功前不能重启。</div><div class="line"></div><div class="line">#### 安装已存在的包</div><div class="line">为新平台安装所有之前下载的替换。（此时可以休息休息，因为需要花费一段时间。）</div></pre></td></tr></table></figure></p>
+<p>$ pacman -S $(pacman -Qq)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">For migration away from 64 bits, you may want to skip installing a 32-bit kernel in the command above, since the old 64-bit kernel will still run 32-bit programs.</div><div class="line">完整这步迁移后，各方面都已经完成并且可以重启电脑。</div><div class="line"></div><div class="line">### 清理</div><div class="line">你现在可以移除Busybox和lib32-glibc。</div></pre></td></tr></table></figure></p>
+<p>$ pacman -Rcn busybox lib32-glibc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#### Makepkg compiler flags</div><div class="line">升级中新版的```/etc/makepkg.conf```可能会被保存至```/etc/makepkg.conf.pacnew```。如果你以后要用[makepkg](https://wiki.archlinux.org/index.php/Makepkg)进行编译，你必须替换或修改老版本。</div></pre></td></tr></table></figure></p>
+<p>$ mv /etc/makepkg.conf /etc/makepkg.conf.backup &amp;&amp; mv /etc/makepkg.conf.pacnew /etc/makepkg.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">It might also be a good idea to just get a list of &quot;new&quot; additions to /etc. You can get a list with the following command:</div></pre></td></tr></table></figure></p>
+<p>$ find /etc/ -type f -name *.pac*<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 问题解决</div><div class="line">在升级过程中，当glibc替换为新版本后，许多老版本的程序将不能运行。如果发生此类问题，你可以用[busybox](https://www.archlinux.org/packages/?name=busybox)和[lib32-glibc](https://www.archlinux.org/packages/?name=lib32-glibc)来解决。</div><div class="line"></div><div class="line">### Busybox</div><div class="line">In Arch, Busybox is statically linked; it can run without any libraries. There are many commands available to you. For example, to extract an i686 version of Pacman from a cached package:</div></pre></td></tr></table></figure></p>
+<p>$ busybox tar xf /var/cache/pacman/pkg/pacman-3.3.2-1-i686.pkg.tar.gz -C <some folder=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Lib32-glibc</div><div class="line">Example run 32 bit /bin/ls:</div></pre></td></tr></table></figure></some></p>
+<p>$ /lib/ld-linux-x86-32.so.2 /bin/ls<br>```</p>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ul>
+<li><a href="https://wiki.archlinux.org/index.php/Migrate_installation_to_new_hardware" target="_blank" rel="external">Migrate installation to new hardware</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fancyoung.com/blog/migrating-between-architectures-without-reinstalling/" data-id="cixcp3n410003sz2jdki37da2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/blueprint-tutorial/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Blueprint教程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/octopress-study/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">技术博客利器——Octopress</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arch-Linux/">Arch Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Arch-Linux/翻译/">翻译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Arch-Linux/问题解决/">问题解决</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/问题解决/">问题解决</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Emacs/">Emacs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Emacs/问题解决/">问题解决</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/">Octopress</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/教程/">教程</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/教程/常用/">常用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/教程/常用/问题解决/">问题解决</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/问题解决/">问题解决</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/问题解决/Ruby/">Ruby</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ruby/">Ruby</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Ruby/Bug/">Bug</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/翻译/常用/">常用</a></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/blog/a-better-way-to-learn-angularjs/">学习AngularJS方法（翻译）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/use-octopress-new-post-function-with-zsh/">Octopress在zsh下无法新建博客的问题</a>
+          </li>
+        
+          <li>
+            <a href="/blog/arch-linux-reinstall-glibc/">Arch升级失败后修复glibc记录</a>
+          </li>
+        
+          <li>
+            <a href="/blog/tmux-study/">tmux使用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 思扬<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

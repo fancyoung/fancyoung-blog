@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ruby on Rails使用时灵异的Bug | 没有标题的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="送给敬爱的GFW
+
+问题$ rails new报错$ bundle install报错等等一切灵异问题据说是因为rubygems.org用的是Amazon的S3服务，而部分s3服务器被GFW拦于墙外。
+解决
+2012.12.31更新：淘宝提供了镜像添加source地址:先$ gem sources -a http://ruby.taobao.org/,用$ gem sources -l查看sou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ruby on Rails使用时灵异的Bug">
+<meta property="og:url" content="http://fancyoung.com/blog/rubygems-problem/index.html">
+<meta property="og:site_name" content="没有标题的博客">
+<meta property="og:description" content="送给敬爱的GFW
+
+问题$ rails new报错$ bundle install报错等等一切灵异问题据说是因为rubygems.org用的是Amazon的S3服务，而部分s3服务器被GFW拦于墙外。
+解决
+2012.12.31更新：淘宝提供了镜像添加source地址:先$ gem sources -a http://ruby.taobao.org/,用$ gem sources -l查看sou">
+<meta property="og:updated_time" content="2016-12-31T03:53:55.831Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ruby on Rails使用时灵异的Bug">
+<meta name="twitter:description" content="送给敬爱的GFW
+
+问题$ rails new报错$ bundle install报错等等一切灵异问题据说是因为rubygems.org用的是Amazon的S3服务，而部分s3服务器被GFW拦于墙外。
+解决
+2012.12.31更新：淘宝提供了镜像添加source地址:先$ gem sources -a http://ruby.taobao.org/,用$ gem sources -l查看sou">
+  
+    <link rel="alternate" href="/atom.xml" title="没有标题的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">没有标题的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">记录与分享</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://fancyoung.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-rubygems-problem" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/rubygems-problem/" class="article-date">
+  <time datetime="2011-11-17T12:33:00.000Z" itemprop="datePublished">2011-11-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Ruby/">Ruby</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ruby on Rails使用时灵异的Bug
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>送给敬爱的GFW</p>
+</blockquote>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p><code>$ rails new</code>报错<br><code>$ bundle install</code>报错<br>等等一切灵异问题<br>据说是因为rubygems.org用的是Amazon的S3服务，而部分s3服务器被GFW拦于墙外。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ul>
+<li><p>2012.12.31更新：淘宝提供了<a href="http://ruby.taobao.org/" target="_blank" rel="external">镜像</a><br>添加source地址:<br>先<code>$ gem sources -a http://ruby.taobao.org/</code>,<br>用<code>$ gem sources -l</code>查看source列表,<br>然后用<code>$ gem sources -r 不需要的source地址</code>命令来删除之前的.</p>
+</li>
+<li><p><del>曾经解决方案，单独下载安装包</del><br><del>可能需要安装的包</del><br><del>multi_json</del><br><del>activesupport</del> </p>
+</li>
+</ul>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a href="http://rubygems.org/" target="_blank" rel="external">Rubygems</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fancyoung.com/blog/rubygems-problem/" data-id="cixcp3n4a0005sz2jg6upp1fz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/html-template/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HTML模板
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/blueprint-tutorial/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Blueprint教程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arch-Linux/">Arch Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Arch-Linux/翻译/">翻译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Arch-Linux/问题解决/">问题解决</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/问题解决/">问题解决</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Emacs/">Emacs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Emacs/问题解决/">问题解决</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/">Octopress</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/教程/">教程</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/教程/常用/">常用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/教程/常用/问题解决/">问题解决</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/问题解决/">问题解决</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/问题解决/Ruby/">Ruby</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ruby/">Ruby</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Ruby/Bug/">Bug</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/翻译/常用/">常用</a></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/blog/a-better-way-to-learn-angularjs/">学习AngularJS方法（翻译）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/use-octopress-new-post-function-with-zsh/">Octopress在zsh下无法新建博客的问题</a>
+          </li>
+        
+          <li>
+            <a href="/blog/arch-linux-reinstall-glibc/">Arch升级失败后修复glibc记录</a>
+          </li>
+        
+          <li>
+            <a href="/blog/tmux-study/">tmux使用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 思扬<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

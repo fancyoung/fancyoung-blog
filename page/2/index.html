@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>没有标题的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="没有标题的博客">
+<meta property="og:url" content="http://fancyoung.com/page/2/index.html">
+<meta property="og:site_name" content="没有标题的博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="没有标题的博客">
+  
+    <link rel="alternate" href="/atom.xml" title="没有标题的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">没有标题的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">记录与分享</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://fancyoung.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-bootstrap-bug-when-responsive-css-with-navbar-fixed-top" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/bootstrap-bug-when-responsive-css-with-navbar-fixed-top/" class="article-date">
+  <time datetime="2012-03-07T09:32:00.000Z" itemprop="datePublished">2012-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Bootstrap/">Bootstrap</a>►<a class="article-category-link" href="/categories/Bootstrap/问题解决/">问题解决</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/bootstrap-bug-when-responsive-css-with-navbar-fixed-top/">Bootstrap使用响应式设计(Responsive design)时导航条上部有空白的解决方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><p>Bug出现需要同时满足以下3个条件:  </p>
+<ul>
+<li>顶部导航条navbar使用class<code>navbar-fixed-top</code>  </li>
+<li>参考Bootstrap官方网站, 给body添加样式<code>padding-top: 60px;</code>  </li>
+<li>使用响应式(Responsive design), 并且处在此状态下(默认为宽度&lt;=980时触发)  </li>
+</ul>
+<h4 id="解决方案1"><a href="#解决方案1" class="headerlink" title="解决方案1"></a>解决方案1</h4><p>给此段样式加上条件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@media (min-width: 981px) &#123;</div><div class="line">    body &#123;</div><div class="line">        padding-top: 60px;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="解决方案2"><a href="#解决方案2" class="headerlink" title="解决方案2"></a>解决方案2</h4><p>将bootstrap-responsive.css放在body样式之后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;link href=&quot;../css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;</div><div class="line">&lt;style type=&quot;text/css&quot;&gt;</div><div class="line">      body &#123;</div><div class="line">        padding-top: 60px;</div><div class="line">      &#125;</div><div class="line">&lt;/style&gt;</div><div class="line">&lt;link href=&quot;../css/bootstrap-responsive.css&quot; rel=&quot;stylesheet&quot;&gt;</div></pre></td></tr></table></figure></p>
+<p>Rails3.2的Asset Pipeline就更方便了，放在import中即可（我用的是Sass）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@import compass</div><div class="line">$baseFontSize: 15px</div><div class="line">@import compass_twitter_bootstrap</div><div class="line">body</div><div class="line">  padding-top: 60px</div><div class="line">@import compass_twitter_bootstrap_responsive</div></pre></td></tr></table></figure></p>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>我在某项目中因为使用的是customize出来的单个css文件, 所以采用了解决方案1.<br>在另一RoR项目中考虑使用解决方案2.</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="https://github.com/twitter/bootstrap/issues/1570" target="_blank" rel="external">navbar-fixed-top breaks when using responsive css</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fancyoung.com/blog/bootstrap-bug-when-responsive-css-with-navbar-fixed-top/" data-id="cixcp3n4o000esz2j8qro0rrc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-deploy-a-website-without-your-own-server" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/deploy-a-website-without-your-own-server/" class="article-date">
+  <time datetime="2012-02-24T16:17:00.000Z" itemprop="datePublished">2012-02-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Ruby/">Ruby</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/deploy-a-website-without-your-own-server/">将一切放在云端</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Github<br>Heroku<br>MongoHQ<br>UpYun<br>name.com  </p>
+</blockquote>
+<p>一切在拖延症患者眼里都是障碍,<br>尤其是: 技术, 设计, 域名, 服务器.</p>
+<h2 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h2><h4 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h4><p>一个想法在脑子里几年了,<br>首要问题是怎么做.<br>从Java, PHP, Ruby一路走来,<br>从Rails1, 2, 3, 中途好几次刚建好项目便放弃.<br>到今天的3.2.1, 看上去最佳解决方案已经出炉.<br>同时还要忍住去捯饬NodeJS的冲动. </p>
+<p>数据库用MongoDB,<br>单是不用像MySQL一样migrate的特性,<br>就让我深深爱上它.</p>
+<h4 id="前端代码模板很有意思"><a href="#前端代码模板很有意思" class="headerlink" title="前端代码模板很有意思."></a>前端代码模板很有意思.</h4><ul>
+<li>HTML<br>先前流行的是HAML,<br>我也很喜欢它的格式.<br>不过这回还是玩玩SLiM吧,<br>虽然它的可读性不如前者.</li>
+<li>CSS<br>三选一: SASS, SCSS, LESS.<br>选定SASS.<br>一是因为之前用过比较熟,<br>使用缩进的风格也是我喜欢的类型.<br>一直不明白后来要推出SCSS这种不伦不类的东西.<br>LESS偏向NodeJS系的, 以后有空再研究吧.</li>
+<li>JS<br>CoffeeScript就先不考虑,<br>JS是我最擅长的部分,<br>就让我敲敲正常的代码吧.<br>自从用jQuery后我就很少写真正的JS了,<br>我恨jQuery!<br>另外, UJS被Rails放弃也给我留下了一定的心理阴影.</li>
+</ul>
+<h4 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h4><p>我不是个NB的程序员, 我最喜欢做的事是用别人的轮子.<br>与抄袭不同, 这一切都是开源的.<br>我懂得欣赏它们, 也知道该如何更好的去用, 这大概算是我的一个优点.</p>
+<ul>
+<li>jQuery<br>虽然我恨他, 但还是先用着吧.<br>怀念MooTools的日子.</li>
+<li>Mongoid<br>Ruby里MongoDB的ODM(Object-Document-Mapper)框架.<br>MongoMapper和Mongoid我选择了后者.  </li>
+<li>devise<br>用户身份验证(Authentication)模块.  </li>
+<li>CarrierWave<br>Rails的文件上传模块.<br>其实Paperclip用的人更多, 不过不支持Mongoid.</li>
+<li>图片处理<br>图片处理肯定离不开ImageMagick,<br>Ruby下的接口gem包有: RMagick和Mini magick.<br>不过这回我打算使用又拍云(UpYun)存储图片,<br>顺便就把图片处理也交给它做吧, 后面还会提到.</li>
+</ul>
+<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><p>还好有Bootstrip,<br>有了它前期可以把更多的精力放在功能上.<br>轻量级的Blueprint也是一个很不错的选择.<br>上天赐给我一名设计师吧!</p>
+<h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>额…<br>这个实在太重要了.<br>想了几年终于想到一个还不错的域名,<br><a href="http://iaieye.com" target="_blank" rel="external">iaieye.com</a>,<br>这也是最近比较有动力的原因.</p>
+<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><p>没有自己服务器,<br>所以一切这么解决:  </p>
+<ul>
+<li>代码交给Github<br>Github就不介绍了, 最好, 没有之一.<br>需要注意的是免费版不能加私密项目.<br>国内最近有个GitCafe, 观望中.</li>
+<li>项目放在Heroku  </li>
+<li>数据库用MongoHQ<br>免费16M, 先用着吧.<br>MongoLab免费240M,<br>不过我喜欢前者的Icon.  </li>
+<li>图片存到又拍云(UpYun)<br>前段时间才发现国内已经有一些云服务了.<br>又拍云的口碑不错, 还支持图片处理, 先用用看.<br>盛大云仿佛也不错, 有云主机和MongoIC,<br>不过备案是个大问题(有朋友推荐DNSPod来解决).</li>
+</ul>
+<h2 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h2><h4 id="配置文件里私密信息（尤其是密码不要进SVN）"><a href="#配置文件里私密信息（尤其是密码不要进SVN）" class="headerlink" title="配置文件里私密信息（尤其是密码不要进SVN）"></a>配置文件里私密信息（尤其是密码不要进SVN）</h4><ul>
+<li><p>用环境变量传递<br>如: <code>uri: &lt;%= ENV[&#39;USERNAME&#39;] %&gt;</code></p>
+</li>
+<li><p>环境变量在Heroku里的设置<br>添加: <code>$ heroku config:add USERNAME=fancyoung PASSWORD=123456 ......</code><br>查看: <code>heroku config</code><br>UpYun需要通过此方式配置  </p>
+</li>
+</ul>
+<h4 id="MongoHQ配置"><a href="#MongoHQ配置" class="headerlink" title="MongoHQ配置"></a>MongoHQ配置</h4><p>修改配置文件: <code>config/mongoid.yml</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">production:</div><div class="line">  uri: &lt;%= ENV[&apos;MONGOHQ_URL&apos;] %&gt;</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<h4 id="发布到Heroku"><a href="#发布到Heroku" class="headerlink" title="发布到Heroku"></a>发布到Heroku</h4><p><code>$ git push heroku master</code></p>
+<h4 id="绑定自己的域名"><a href="#绑定自己的域名" class="headerlink" title="绑定自己的域名"></a>绑定自己的域名</h4><p><del>添加Heroku插件(Add-on): Custom Domain.</del><br><del>Heroku里添加插件需要先用信用卡(需国际信用卡)认证.</del><br>(根据@joel 提醒，现在已可以直接设置，无需插件，<br>Custom Domains已打上REPLACED标记。)</p>
+<p>配置过程中, 发现3个IP都ping不通, 发现是被墙.<br>最后用过设置CNAME的方式完成配置.   </p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://devcenter.heroku.com/articles/mongohq" target="_blank" rel="external">Heroku绑定MongoHQ方法</a><br><a href="http://devcenter.heroku.com/articles/custom-domains" target="_blank" rel="external">用Heroku插件Custom Domain自定义域名</a><br><a href="http://devcenter.heroku.com/articles/config-vars" target="_blank" rel="external">配置Heroku上的变量</a>  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fancyoung.com/blog/deploy-a-website-without-your-own-server/" data-id="cixcp3n4m000bsz2j98cad1qr" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-web-design-trends-in-2012" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/web-design-trends-in-2012/" class="article-date">
+  <time datetime="2011-12-15T07:03:00.000Z" itemprop="datePublished">2011-12-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/web-design-trends-in-2012/">2012十大Web设计趋势</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本不想取这么俗的标题,<br>可原文正好推荐了10个.<br>这回就不翻译原文,<br>记点自己的看法.  </p>
+        
+          <p class="article-more-link">
+            <a href="/blog/web-design-trends-in-2012/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fancyoung.com/blog/web-design-trends-in-2012/" data-id="cixcp3n4l000asz2jhyh35o58" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-css-background-transparency" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/css-background-transparency/" class="article-date">
+  <time datetime="2011-11-29T08:44:00.000Z" itemprop="datePublished">2011-11-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>►<a class="article-category-link" href="/categories/前端/翻译/">翻译</a>►<a class="article-category-link" href="/categories/前端/翻译/常用/">常用</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/css-background-transparency/">CSS实现背景透明完美解决方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>翻译自: <a href="http://robertnyman.com/2010/01/11/css-background-transparency-without-affecting-child-elements-through-rgba-and-filters/">CSS Background Transparency Without Affecting Child Elements, Through RGBa And Filters</a></p>
+<p>当今的大部分网页设计都包含了半透明的元素.但用CSS实现想要的效果却没那么简单.</p>
+<h2 id="现存的问题"><a href="#现存的问题" class="headerlink" title="现存的问题"></a>现存的问题</h2><p>如果我们想要一个半透明背景,有两种实现方式:  </p>
+<ul>
+<li>利用CSS和opacity属性  </li>
+<li>建立一个24位PNG背景图片<br>用opacity的问题除了<br><a href="http://robertnyman.com/2008/09/16/you-want-css-opacity-to-go-with-that-well-suit-yourself/">需要通过麻烦的语法来兼容所有浏览器</a>,<br>还有不单该元素自身背景透明了,它的子元素也会透明.<br>所以里面所有的文字也是透明的,这一般不是想要的效果.<br>你可以做一些CSS trick,通过建立额外的元素来解决这个问题,但这种解决方案很恶心.</li>
+</ul>
+<p>用PNG的问题是会额外增加HTTP请求,<br>而且图片比几行css代码要大得多-<br>尤其考虑到图片不能太小以避免<br><a href="http://robertnyman.com/2009/05/26/serious-memory-leak-issue-with-24-bit-png-images-with-alpha-transparency-in-internet-explorer/">IE下24位PNG图透明时引起的内存泄漏</a>.</p>
+        
+          <p class="article-more-link">
+            <a href="/blog/css-background-transparency/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fancyoung.com/blog/css-background-transparency/" data-id="cixcp3n4f0008sz2jf5lqo9mc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-html-template" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/html-template/" class="article-date">
+  <time datetime="2011-11-21T11:48:00.000Z" itemprop="datePublished">2011-11-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/html-template/">HTML模板</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="//gist.github.com/1321460.js?file=html.html"></script>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fancyoung.com/blog/html-template/" data-id="cixcp3n4d0007sz2j68jtrf3p" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-rubygems-problem" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/rubygems-problem/" class="article-date">
+  <time datetime="2011-11-17T12:33:00.000Z" itemprop="datePublished">2011-11-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Ruby/">Ruby</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/rubygems-problem/">Ruby on Rails使用时灵异的Bug</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>送给敬爱的GFW</p>
+</blockquote>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p><code>$ rails new</code>报错<br><code>$ bundle install</code>报错<br>等等一切灵异问题<br>据说是因为rubygems.org用的是Amazon的S3服务，而部分s3服务器被GFW拦于墙外。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><ul>
+<li><p>2012.12.31更新：淘宝提供了<a href="http://ruby.taobao.org/" target="_blank" rel="external">镜像</a><br>添加source地址:<br>先<code>$ gem sources -a http://ruby.taobao.org/</code>,<br>用<code>$ gem sources -l</code>查看source列表,<br>然后用<code>$ gem sources -r 不需要的source地址</code>命令来删除之前的.</p>
+</li>
+<li><p><del>曾经解决方案，单独下载安装包</del><br><del>可能需要安装的包</del><br><del>multi_json</del><br><del>activesupport</del> </p>
+</li>
+</ul>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a href="http://rubygems.org/" target="_blank" rel="external">Rubygems</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fancyoung.com/blog/rubygems-problem/" data-id="cixcp3n4a0005sz2jg6upp1fz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-blueprint-tutorial" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/blueprint-tutorial/" class="article-date">
+  <time datetime="2011-11-17T05:15:00.000Z" itemprop="datePublished">2011-11-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/前端/">前端</a>►<a class="article-category-link" href="/categories/前端/翻译/">翻译</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/blueprint-tutorial/">Blueprint教程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>翻译自: <a href="https://github.com/joshuaclayton/blueprint-css/wiki/Quick-start-tutorial" target="_blank" rel="external">Blueprint CSS Framework Tutorial</a></p>
+<p>Blueprint是个好框架，本教程会深入介绍你可以用它来做什么，也会说到什么时候不适合用。</p>
+<h2 id="Blueprint简介"><a href="#Blueprint简介" class="headerlink" title="Blueprint简介"></a>Blueprint简介</h2><p>Blueprint是一个CSS框架，为减少开发时间而设计。它可以构架起有坚实基础的CSS，其中包含合理的排版（typography）、可定制的网格(grid)、打印样式等。</p>
+<p>但是Blueprint不是银弹，它适用于每个页面都需要独特的设计。在决定使用Blueprint前建议先看看Blueprint例子以决定是否适合你。你可以检出<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">“框架”这个词也许有些误导，Blueprint并不会建议你如何组织你的CSS文件。它更像一个工具箱，你可以从中选出你需要的。</div><div class="line"></div><div class="line">&lt;!--more--&gt;</div><div class="line"></div><div class="line">## 结构概述</div><div class="line">自下而上的看Blueprint：</div><div class="line"></div><div class="line">CSS布局：</div><div class="line">CSS reset: 移除浏览器的默认规则。</div><div class="line">Typography: 默认提供一些漂亮的排版和颜色。</div><div class="line">Grid: 提供一组样式来制作网格。</div><div class="line"></div><div class="line">第二部分是脚本。你可以它来自定义框架，可以是列数、宽度等外观，还可以是路径、命名空间等。我们有两个脚本：</div><div class="line">1. Compressor: 用于压缩和自定义源文件。</div><div class="line">2. Validator: 用于验证Blueprint核心文件。</div><div class="line"></div><div class="line">以上是简单介绍，接下来让我们进入细节。首先，我们看看CSS部分。然后我们再介绍脚本，以及如何通过它数和自定制框架。</div><div class="line"></div><div class="line">## 设置Blueprint</div><div class="line">为了使用Blueprint，你必须包含以下三个文件在你的HTML中：</div><div class="line"></div><div class="line">- ```blueprint/screen.css```: 主要文件，页面展示的样式都在里面。</div><div class="line">- ```blueprint/print.css```: 用于打印。</div><div class="line">- ```blueprint/ie.css```: 用于IE浏览器下的校正。</div><div class="line"></div><div class="line">在HTML中嵌入下面代码来引用（请确认路径正确）：</div></pre></td></tr></table></figure></p>
+<p><link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection"></p>
+<p><link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"><br><!--[if lt IE 8]>
+  <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection" />
+<![endif]--><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">（原文提示XHTML需要用&quot;/&gt;&quot;结束标签，上面代码中我已经直接加上了）</div><div class="line"></div><div class="line">## 使用Blueprint里的CSS</div><div class="line">之前已经提过，Blueprint有三个布局，前两个布局，CSS reset和默认排版用于设置默认HTML样式。所以你不需要更改这两个文件。如果你想更改全局字体大小等，建议你写在自己的CSS文件里，以便将来更新Blueprint版本。</div><div class="line"></div><div class="line">#### 排版相关class</div><div class="line">While the typography of Blueprint mainly applies itself, there’s a few classes</div><div class="line">provided. 下面是一个它们名字的列表和介绍它们的作用:</div><div class="line"></div><div class="line"></div><div class="line">`.hide`</div><div class="line">隐藏元素  </div><div class="line">`.quiet`</div><div class="line">使字体颜色柔和  </div><div class="line">`.loud`</div><div class="line">黑色字体  </div><div class="line">`highlight`</div><div class="line">黄色背景  </div><div class="line">`.added`</div><div class="line">绿色背景  </div><div class="line">`.removed`</div><div class="line">红色背景  </div><div class="line">`.first`</div><div class="line">移除左侧margin/padding  </div><div class="line">`.last`</div><div class="line">移除右侧margin/padding  </div><div class="line">`.top`</div><div class="line">移除顶部margin/padding  </div><div class="line">`.bottom`</div><div class="line">移除底部margin/padding</div><div class="line"></div><div class="line">#### 表格样式</div><div class="line">Blueprint可以通过给输入元素加`.text`, `.title`类来控制，其中`.text`表示普通大小，`.title`提供一个大字体的输入框。</div><div class="line"></div><div class="line">这里还有一些类可以用于成功或失败信息：</div><div class="line"></div><div class="line">`div.error`</div><div class="line">建议一个失败框（红色）。  </div><div class="line">`div.notice`</div><div class="line">建议一个提示框（黄色）。  </div><div class="line">`div.success`</div><div class="line">建议一个成功框（绿色）。</div><div class="line"></div><div class="line">#### 建立网格</div><div class="line">第三个布局是网格，是一个给你网站建立各样网格的工具。记住网格背后的大部分CSS都可以自定义（下面会讲到）。在这个部分我会使用默认设置。</div><div class="line"></div><div class="line">默认网格有24列，每列宽30px，边距(margin)10px。总共宽为950px，适合1024x768的分辨率。如果你想要更窄的设计，可以看下面自定义网格一节。</div><div class="line"></div><div class="line">怎么用Blueprint来建立网格呢？新建一个`&lt;div/&gt;`来代表一列，并且给它加一个`.span-x`的class。比如，如果你想要一个三列的布局，两窄一宽，并且包含头尾，可以参考下面的代码:</div></pre></td></tr></table></figure></p>
+<div class="container"><br>  <div class="span-24"><br>    头部<br>  </div>
+
+  <div class="span-4"><br>    第一列<br>  </div><br>  <div class="span-16"><br>    中间列<br>  </div><br>  <div class="span-4 last"><br>    最后一列<br>  </div>
+
+<p>  <div class="span-24"><br>    尾部<br>  </div><br></p></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">此外，还有两个class你应该知道。首先，每个Blueprint页面应该包含在一个class为`.container`的div里，一般紧跟在body标签后。</div><div class="line"></div><div class="line">第二，每行的最后一列（默认24列），应该用class`.last`来移除右侧的边距(margin)。可以参考`tests/parts/`里的例子。这些文件告诉了你Blueprint的网格能做些什么。</div><div class="line"></div><div class="line">这里是一个其他网格相关class的快速概述：  </div><div class="line">`.append-x`</div><div class="line">附加（在后面加）x条空列。  </div><div class="line">`.prepend-x`</div><div class="line">追加（在前面）x条空列。  </div><div class="line">`.push-x`</div><div class="line">推送x列到左侧。可用于切换列。  </div><div class="line">`.pull-x`</div><div class="line">推送x列到右侧。可用于切换列。  </div><div class="line">`.border`</div><div class="line">列右侧加分界线。  </div><div class="line">`.colborder`</div><div class="line">建立新列，分界线在中部。  </div><div class="line">`.clear`</div><div class="line">换行，无论是否有空。  </div><div class="line">`.showgrid`</div><div class="line">给容器或列添加后能看见网格和基线。 </div><div class="line"></div><div class="line">在这个列表中，`x`用于append/prepend时范围是1-23，用于push/pull时是1-24。如果你自定义了新的列数，这个范围会随之变化。</div><div class="line"></div><div class="line">下面是另一个例子，包含4列等宽，前两列间有分界线，后两列间也有，4列的中间有段空白。</div></pre></td></tr></table></figure><p></p>
+<p><div class="container"><br>  <div class="span-5 border"><br>    第一列<br>  </div><br>  <div class="span-5 append-4"><br>    第二列<br>  </div><br>  <div class="span-5 border"><br>    第三列<br>  </div><br>  <div class="span-5 last"><br>    第四列<br>  </div><br></div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">你也可以通过嵌套列来实现想要的布局。下面例子展现的是页面左半部有四个长方形，两上两下，右半部有一个长方形。</div></pre></td></tr></table></figure></p>
+<p><div class="container"><br>  <div class="span-12"><br>    <div class="span-6"><br>      左上<br>    </div><br>    <div class="span-6 last"><br>      右上<br>    </div><br>    <div class="span-6"><br>      左下<br>    </div><br>    <div class="span-6 last"><br>      右下<br>    </div><br>  </div><br>  <div class="span-12 last"><br>    另一块<br>  </div><br></div><br><code>``
+如果不理解可以在浏览器里尝试上面的代码。想看更过的如何使用class的例子，请看</code>/tests/parts/grid.html`。</p>
+<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><p>Blueprint有两个脚本：一个用于压缩和自定义CSS，另一个是验证核心CSS文件，以免你修改了某些文件。</p>
+<h4 id="验证器-The-Validator"><a href="#验证器-The-Validator" class="headerlink" title="验证器(The Validator)"></a>验证器(The Validator)</h4><p>验证器的工作很简单——检查Blueprint核心CSS里的文件。脚本使用配套版本的W3C CSS验证器来完成。为了运行，你需要安装Ruby。然后你可以运行<code>$ ruby validate.rb</code>。</p>
+<p>请注意Blueprint有几个验证错误。它们是已知的，来自于几个为了保持浏览器一致性的CSS hack。</p>
+<h4 id="压缩器-The-Compressor"><a href="#压缩器-The-Compressor" class="headerlink" title="压缩器(The Compressor)"></a>压缩器(The Compressor)</h4><p>你的HTML里引用压缩版的核心CSS文件时，当你做过修改，需要重新压缩。这是压缩器脚本的作用。</p>
+<p>另外，你可以在这里自定义网格。为了自定义网格，需要使用一个特殊的设置文件，当你运行压缩器时，就会生成新的CSS。新压缩的文件将会使用你的设置。</p>
+<p>你之需要重新运行脚本来重新压缩。这会解析核心CSS文件并在blueprint文件夹里生成新文件。与验证器一样，需要安装Ruby。在<code>lib</code>目录里执行<code>$ ruby compress.rb</code>。</p>
+<p>执行这个文件会将<code>blueprint/src</code>下的文件合并成三个文件：<code>ie.css</code>, <code>print.css</code>, <code>screen.css</code>。<br>但是你可以通过加参数来改变行为。执行<code>$ ruby compress.rb -h</code>查看你可以使用的基本参数。</p>
+<h4 id="自定义设置"><a href="#自定义设置" class="headerlink" title="自定义设置"></a>自定义设置</h4><p>你可以阅读<code>lib/compress.rb</code>里的文档来学习如何自定义设置。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/joshuaclayton/blueprint-css/wiki/Quick-start-tutorial" target="_blank" rel="external">Blueprint CSS Framework Tutorial(官方原文)</a><br><a href="http://blueprintcss.org/" target="_blank" rel="external">官网</a><br><a href="http://blueprintcss.org/tests/" target="_blank" rel="external">Demo</a>  </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fancyoung.com/blog/blueprint-tutorial/" data-id="cixcp3n430004sz2jyxozb4y8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-migrating-between-architectures-without-reinstalling" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/migrating-between-architectures-without-reinstalling/" class="article-date">
+  <time datetime="2011-11-07T06:37:00.000Z" itemprop="datePublished">2011-11-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Arch-Linux/">Arch Linux</a>►<a class="article-category-link" href="/categories/Arch-Linux/翻译/">翻译</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/migrating-between-architectures-without-reinstalling/">将Arch Linux从32位升到64位</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>翻译自Arch Wiki：<a href="https://wiki.archlinux.org/index.php/Migrating_Between_Architectures_Without_Reinstalling">Migrating Between Architectures Without Reinstalling</a></li>
+<li>i686为32位，x86_64位64位</li>
+<li>升级有风险，操作须谨慎。本人使用文中方法2升级时无意间重启了电脑，催悲了。</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/blog/migrating-between-architectures-without-reinstalling/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fancyoung.com/blog/migrating-between-architectures-without-reinstalling/" data-id="cixcp3n410003sz2jdki37da2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-octopress-study" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/octopress-study/" class="article-date">
+  <time datetime="2011-11-04T04:59:00.000Z" itemprop="datePublished">2011-11-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Octopress/">Octopress</a>►<a class="article-category-link" href="/categories/Octopress/教程/">教程</a>►<a class="article-category-link" href="/categories/Octopress/教程/常用/">常用</a>►<a class="article-category-link" href="/categories/Octopress/教程/常用/问题解决/">问题解决</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/octopress-study/">技术博客利器——Octopress</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Octopress简介"><a href="#Octopress简介" class="headerlink" title="Octopress简介"></a>Octopress简介</h2><blockquote>
+<p><a href="https://github.com/imathis/octopress">Octopress</a> is a framework designed by Brandon Mathis for <a href="https://github.com/mojombo/jekyll">Jekyll</a>, the blog aware static site generator powering Github Pages.  </p>
+</blockquote>
+        
+          <p class="article-more-link">
+            <a href="/blog/octopress-study/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fancyoung.com/blog/octopress-study/" data-id="cixcp3n3o0000sz2jwzbnnlqk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-host-to-github" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/host-to-github/" class="article-date">
+  <time datetime="2011-11-04T03:31:00.000Z" itemprop="datePublished">2011-11-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Github/">Github</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/host-to-github/">Github Page绑定自己域名</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<ul>
+<li><p>在项目根目录下建立一文件，名为<code>CNAME</code>，里面写上域名，如<code>fancyoung.com</code><br>或者在命令行里执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ echo &apos;fancyoung.com&apos; &gt;&gt; source/CNAME</div></pre></td></tr></table></figure>
+</li>
+<li><p>去自己的域名运营商（我是name.com）处修改:<br>CNAME: www.fancyoung.com =&gt; fancyoung.github.com<br>A: fancyoung.com =&gt; 207.97.227.245  </p>
+</li>
+<li><p>注意：<br>文中fancyoung请替换为自己的域名  </p>
+</li>
+</ul>
+<p><a href="http://pages.github.com/" target="_blank" rel="external">官方教程</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://fancyoung.com/blog/host-to-github/" data-id="cixcp3n3u0001sz2jo9r0kx4q" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Arch-Linux/">Arch Linux</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Arch-Linux/翻译/">翻译</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Arch-Linux/问题解决/">问题解决</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/">Bootstrap</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap/问题解决/">问题解决</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Emacs/">Emacs</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Emacs/问题解决/">问题解决</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Github/">Github</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/">Octopress</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/教程/">教程</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/教程/常用/">常用</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/教程/常用/问题解决/">问题解决</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/问题解决/">问题解决</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Octopress/问题解决/Ruby/">Ruby</a></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ruby/">Ruby</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Ruby/Bug/">Bug</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/翻译/">翻译</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/前端/翻译/常用/">常用</a></li></ul></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/05/">May 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/blog/a-better-way-to-learn-angularjs/">学习AngularJS方法（翻译）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/use-octopress-new-post-function-with-zsh/">Octopress在zsh下无法新建博客的问题</a>
+          </li>
+        
+          <li>
+            <a href="/blog/arch-linux-reinstall-glibc/">Arch升级失败后修复glibc记录</a>
+          </li>
+        
+          <li>
+            <a href="/blog/tmux-study/">tmux使用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 思扬<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
